@@ -1,5 +1,6 @@
 import React from "react";
 import AuthService from "../../services/AuthService";
+import {Link} from "react-router-dom";
 
 export default class LandingPage extends React.Component{
     constructor(props){
@@ -34,7 +35,7 @@ export default class LandingPage extends React.Component{
             work_email: this.state.email,
             password: this.state.password
         };
-        console.log(this.state, employee)
+        
         e.preventDefault();
 
         AuthService.logIn(employee)
@@ -42,7 +43,6 @@ export default class LandingPage extends React.Component{
                 console.log(resData);
             })
             .catch(err => {
-                console.log(err)
                 this.handleError(err.error);
             });
     }
@@ -73,9 +73,11 @@ export default class LandingPage extends React.Component{
 
                             <button id="login-submit">Log In</button>
                         </fieldset>
+
+                        <p>{this.state.error ? this.state.error: ""}</p>
                     </form>
 
-                    <p>Need an account? Register here</p>
+                    <p>Need an account? Register <Link to="/register">here</Link></p>
                 </section>
             </section>
         );
