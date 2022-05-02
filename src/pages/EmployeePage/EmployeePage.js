@@ -5,7 +5,7 @@ export default class EmployeePage extends React.Component{
     render(){
         return (
             <section>
-                <Link to="/employee/deals">Deal</Link>
+                <Link to="/employee/deals">Deals</Link>
             </section>
         );
     };

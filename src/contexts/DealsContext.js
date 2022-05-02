@@ -24,12 +24,32 @@ export class DealsProvider extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            defaultDeal: {
+                id: "",
+                type: "",
+                year: "",
+                make: "",
+                model: "",
+                trim: "",
+                vin: "",
+                stock_num: "",
+                arrival_start: "",
+                arrival_end: "",
+                trade_in: false,
+                trade_year: "",
+                trade_make: "",
+                trade_model: "",
+                has_title: false,
+                comments: "",
+                write_up_date: "",
+                deposit: "",
+                employee_id: ""
+            },
             currentDeal: {},
             deals: {},
             error: ""
         }
     }
-
 
     // current deal methods
     getCurrentDeal = ()=>{

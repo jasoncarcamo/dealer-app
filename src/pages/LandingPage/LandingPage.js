@@ -60,7 +60,6 @@ export default class LandingPage extends React.Component{
                 TokenService.setToken(token);
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
-                this.handleLogInSuccess();
                 this.rerouteApp(token);
             })
             .catch(err => {

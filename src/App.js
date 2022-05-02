@@ -7,7 +7,10 @@ import { Route , Routes, Navigate} from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Register from './pages/Register/Register';
 import EmployeePage from './pages/EmployeePage/EmployeePage';
+import NotFound from './pages/NotFound/NotFound';
 import Deals from './pages/EmployeePage/Deals';
+import Header from './template/Header/Header';
+import EmployeeRoutes from './EmployeeRoutes/EmployeeRoutes';
 
 export default class App extends React.Component{
     constructor(props){
@@ -24,21 +27,25 @@ export default class App extends React.Component{
     }
 
     RenderAuthethicatedRoutes = ()=>{
+        return <Route path="/employee" element={<EmployeeRoutes setToken={this.setToken}/>}/>;
+    }
+
+    RenderUnautheticatedRoutes = ()=>{
         return (
             <>
-                <Route path="/employee" element={TokenService.hasToken() ? <EmployeePage setToken={this.setToken}/> : <Navigate to="/"/>}/>
-                <Route path="/employee/deals" element={<Deals/>}/>
+                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/employee" replace={true}/>}/>
+                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/"/>}/>
             </>
-        )
+        );
     }
 
     render(){
-        console.log(TokenService.getToken());
         return (
             <Routes>
-                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage/> : <Navigate to="/employee" replace={true}/>}/>
-                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/"/>}/>
+                {!TokenService.hasToken() ? this.RenderUnautheticatedRoutes() : ""}
                 {TokenService.hasToken() ? this.RenderAuthethicatedRoutes() : ""}
+
+                <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         );
     };
