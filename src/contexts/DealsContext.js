@@ -1,6 +1,7 @@
 import React from "react";
 
 const DealsContext = React.createContext({
+    defaultDeal: {},
     currentDeal: {},
     deals: {},
     getCurrentDeal: ()=>{},
@@ -147,6 +148,7 @@ export class DealsProvider extends React.Component{
 
     render(){
         const value = {
+            defaultDeal: this.state.defaultDeal,
             currentDeal: this.state.currentDeal,
             deals: this.state.deals,
             error: this.state.error,
