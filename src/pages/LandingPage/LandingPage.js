@@ -1,6 +1,9 @@
 import React from "react";
 import AuthService from "../../services/AuthService";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
+import TokenService from "../../services/TokenService";
+import EmployeeStorage from "../../services/EmployeeStorage";
+import AppContext from "../../contexts/AppContext";
 
 export default class LandingPage extends React.Component{
     constructor(props){
@@ -8,9 +11,12 @@ export default class LandingPage extends React.Component{
         this.state = {
             email: "",
             password: "",
+            success: false,
             error: ""
         }
     }
+
+    static contextType = AppContext;
 
     handleEmail = (e)=>{
         this.setState({
@@ -30,6 +36,14 @@ export default class LandingPage extends React.Component{
         });
     }
 
+    setEmployeeContext = (employee)=>{
+        this.context.employeeContext.setEmployee(employee);
+    }
+
+    rerouteApp = (token)=>{
+        this.props.setToken(token);
+    }
+
     handleLogIn = (e)=>{
         const employee = {
             work_email: this.state.email,
@@ -40,9 +54,17 @@ export default class LandingPage extends React.Component{
 
         AuthService.logIn(employee)
             .then( resData => {
-                console.log(resData);
+                const employee = resData.employee;
+                const token = resData.token;
+
+                TokenService.setToken(token);
+                EmployeeStorage.setEmployee(employee);
+                this.setEmployeeContext(employee);
+                this.handleLogInSuccess();
+                this.rerouteApp(token);
             })
             .catch(err => {
+                console.log(err)
                 this.handleError(err.error);
             });
     }
@@ -78,6 +100,7 @@ export default class LandingPage extends React.Component{
                     </form>
 
                     <p>Need an account? Register <Link to="/register">here</Link></p>
+                    {this.state.success ? <Navigate to="/employee" replace={true}></Navigate> : ""}
                 </section>
             </section>
         );

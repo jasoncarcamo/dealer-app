@@ -3,10 +3,10 @@ const DealsStorage = {
         return this.getDeals();
     },
     getDeals(){
-        return localStorage.getItem("deals");
+        return JSON.parse(localStorage.getItem("deals"));
     },
     setDeals(deals){
-        return localStorage.setItem("deals", deals);
+        return JSON.stringify(localStorage.setItem("deals", deals));
     },
     updateDeals(deals){
         return this.setDeals(deals);

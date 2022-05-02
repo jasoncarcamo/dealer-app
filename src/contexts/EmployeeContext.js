@@ -5,6 +5,7 @@ import EmployeeService from "../services/EmployeeService";
 
 const EmployeeContext = React.createContext({
     employee: {},
+    error: "",
     getEmployee: ()=>{},
     setEmployee: ()=>{},
     updateEmployee: ()=>{},
@@ -43,7 +44,7 @@ export class EmployeeProvider extends React.Component{
                 })
                 .catch( err => {
                     this.setState({
-                        error
+                        error: err.error
                     });
                 });
         };
@@ -71,14 +72,23 @@ export class EmployeeProvider extends React.Component{
         });
     }
 
+    handleError = (error)=>{
+        this.setState({
+            error
+        });
+    }
+
     render(){
         const value = {
             employee: this.state.employee,
+            error: this.state.error,
             getEmployee: this.getEmployee,
             setEmployee: this.setEmployee,
             updateEmployee: this.updateEmployee,
             deleteEmployee: this.deleteEmployee
-        }
+        };
+
+        console.log(value);
 
         return (
             <EmployeeContext.Provider value={value}>

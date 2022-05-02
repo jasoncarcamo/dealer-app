@@ -1,6 +1,9 @@
 import React from "react";
 import AuthService from "../../services/AuthService";
-import {Link} from "react-router-dom";
+import TokenService from "../../services/TokenService";
+import EmployeeStorage from "../../services/EmployeeStorage";
+import AppContext from "../../contexts/AppContext";
+import {Link, Navigate} from "react-router-dom";
 
 export default class Register extends React.Component{
     constructor(props){
@@ -14,9 +17,12 @@ export default class Register extends React.Component{
             mobile_number: "",
             password: "",
             confirm_password: "",
+            success: false,
             error: ""
         }
     }
+
+    static contextType = AppContext;
 
     handleInput = (e)=>{
         this.setState({
@@ -30,18 +36,34 @@ export default class Register extends React.Component{
         });
     }
 
+    setEmployeeContext = (employee)=>{
+        this.context.employeeContext.setEmployee(employee);
+    }
+
+    rerouteApp = (token)=>{
+        this.props.setToken(token);
+    }
+
     handleRegister = (e)=>{
         const newEmployee = Object.assign({}, this.state);
 
         e.preventDefault();
 
+        delete newEmployee.success;
         delete newEmployee.error;
 
         AuthService.register(newEmployee)
             .then( resData => {
-                console.log(resData);
+                const employee = resData.createdEmployee;
+                const token = resData.token;
+
+                TokenService.setToken(token);
+                EmployeeStorage.setEmployee(employee);
+                this.setEmployeeContext(employee);
+                this.rerouteApp(token);
             })
             .catch(err => {
+                console.log(err)
                 this.handleError(err.error);
             });
     }

@@ -3,10 +3,10 @@ const EmployeeStorage = {
         return this.getEmployeeStored();
     },
     getEmployeeStored(){
-        return localStorage.getItem("employee");
+        return JSON.parse(localStorage.getItem("employee"));
     },
     setEmployee(employee){
-        return localStorage.setItem("employee", employee);
+        return localStorage.setItem("employee", JSON.stringify(employee));
     },
     updateEmployee(employee){
         return this.setEmployee(employee);
