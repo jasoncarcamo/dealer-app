@@ -6,7 +6,7 @@ export default class Header extends React.Component{
 
 
     render(){
-        console.log(this.context)
+        console.log(this.context);
         return (
             <header>
                 <h1>{this.context.employeeContext.employee.first_name}</h1>

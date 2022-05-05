@@ -1,4 +1,8 @@
 import React from "react";
+import DealsService from "../services/DealsService";
+import DealsStorage from "../services/DealsStorage";
+import TokenService from "../services/TokenService";
+import AppContext from "./AppContext";
 
 const DealsContext = React.createContext({
     defaultDeal: {},
@@ -33,7 +37,7 @@ export class DealsProvider extends React.Component{
                 model: "",
                 trim: "",
                 vin: "",
-                stock_num: "",
+                stock_number: "",
                 arrival_start: "",
                 arrival_end: "",
                 trade_in: false,
@@ -50,6 +54,39 @@ export class DealsProvider extends React.Component{
             deals: {},
             error: ""
         }
+    }
+
+    componentDidMount(){
+        this.checkDeals();
+    }
+
+    static contextType = AppContext;
+
+    saveDeals = (deals)=>{
+        DealsStorage.setDeals(deals);
+    }
+
+    checkDeals = ()=>{
+        const token = TokenService.getToken();
+        const deals = DealsStorage.getDeals();
+        
+        if(!token){
+            DealsService.getAllDeals()
+                .then(resData => {
+
+                })
+                .catch(err=>{
+
+                });
+        } else{
+            this.setDeals(deals);
+        };
+    }
+
+    getDeals = ()=>{
+        const deals = this.state.deals;
+
+        return deals;
     }
 
     // current deal methods
@@ -89,15 +126,9 @@ export class DealsProvider extends React.Component{
     }
 
     setDeals = (newDeals)=>{
-        const deals = this.state.deals;
-        
-        if(newDeals.length > 0){
-            deals.map((deal, i)=>{
-                if(!deals.hasOwnProperty(deal.id)){
-                    deals[deal.id] = deal;
-                };
-            });
-        };
+        const deals = newDeals;
+
+        this.saveDeals(deals);
 
         this.setState({
             deals
@@ -126,6 +157,8 @@ export class DealsProvider extends React.Component{
         const deals = this.state.deals;
 
         deals[id] = deal;
+
+        this.saveDeals(deals);
 
         this.setState({
             deals
@@ -161,9 +194,9 @@ export class DealsProvider extends React.Component{
             updateDeals: this.updateDeals,
             deleteDeals: this.deleteDeals,
             getDealById: this.getDealById,
-            setDealById: this.getDealById,
-            updateDealById: this.getDealById,
-            deleteDealById: this.getDealById,
+            setDealById: this.setDealById,
+            updateDealById: this.updateDealById,
+            deleteDealById: this.deleteDealById,
             handleError: this.handleError
         };
 

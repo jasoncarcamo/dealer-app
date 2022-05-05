@@ -32,7 +32,7 @@ export class EmployeeProvider extends React.Component{
     checkEmployee = ()=>{
         const token = TokenService.getToken();
         let employee = EmployeeStorage.getEmployeeStored();
-        console.log(token, employee)
+        
         if(token && !employee){
             EmployeeService.getEmployeeByToken()
                 .then( dbEmployee => {

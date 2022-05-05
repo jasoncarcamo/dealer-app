@@ -6,7 +6,7 @@ const DealsStorage = {
         return JSON.parse(localStorage.getItem("deals"));
     },
     setDeals(deals){
-        return JSON.stringify(localStorage.setItem("deals", deals));
+        return localStorage.setItem("deals", JSON.stringify(deals));
     },
     updateDeals(deals){
         return this.setDeals(deals);

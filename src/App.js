@@ -6,10 +6,7 @@ import { Route , Routes, Navigate} from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Register from './pages/Register/Register';
-import EmployeePage from './pages/EmployeePage/EmployeePage';
 import NotFound from './pages/NotFound/NotFound';
-import Deals from './pages/EmployeePage/Deals';
-import Header from './template/Header/Header';
 import EmployeeRoutes from './EmployeeRoutes/EmployeeRoutes';
 
 export default class App extends React.Component{
@@ -27,7 +24,7 @@ export default class App extends React.Component{
     }
 
     RenderAuthethicatedRoutes = ()=>{
-        return <Route path="/employee" element={<EmployeeRoutes setToken={this.setToken}/>}/>;
+        return <Route path="/employee/*" element={<EmployeeRoutes setToken={this.setToken}/>}/>;
     }
 
     RenderUnautheticatedRoutes = ()=>{
@@ -42,10 +39,8 @@ export default class App extends React.Component{
     render(){
         return (
             <Routes>
-                {!TokenService.hasToken() ? this.RenderUnautheticatedRoutes() : ""}
+                {this.RenderUnautheticatedRoutes()}
                 {TokenService.hasToken() ? this.RenderAuthethicatedRoutes() : ""}
-
-                <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         );
     };
