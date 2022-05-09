@@ -23,24 +23,35 @@ export default class App extends React.Component{
         });
     }
 
+    removeToken = ()=>{
+        this.setState({
+            token: ""
+        });
+    }
+
     RenderAuthethicatedRoutes = ()=>{
-        return <Route path="/employee/*" element={<EmployeeRoutes setToken={this.setToken}/>}/>;
+
+        if(!TokenService.hasToken()){
+            return <Route exact path="/employee/*" element={<Navigate to="/"/>}/>
+        }
+        return <Route path="/employee/*" element={<EmployeeRoutes setToken={this.setToken} removeToken={this.removeToken}/>}/>;
     }
 
     RenderUnautheticatedRoutes = ()=>{
         return (
             <>
-                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/employee" replace={true}/>}/>
-                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/"/>}/>
+                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/employee"/>}/>
+                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/employee"/>}/>
             </>
         );
     }
 
     render(){
+        console.log(this.state)
         return (
             <Routes>
                 {this.RenderUnautheticatedRoutes()}
-                {TokenService.hasToken() ? this.RenderAuthethicatedRoutes() : ""}
+                {this.RenderAuthethicatedRoutes()}
             </Routes>
         );
     };

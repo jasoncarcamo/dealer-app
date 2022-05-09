@@ -6,7 +6,7 @@ export default class Template extends React.Component{
     render(){
         return (
             <>
-                <Header/>
+                <Header removeToken={this.props.removeToken}/>
                     {this.props.children}
                 <Footer/>
             </>

@@ -12,7 +12,7 @@ export default class EmployeeRoutes extends React.Component{
     
     render(){
         return (
-            <Template>
+            <Template removeToken={this.props.removeToken}>
                 <Routes>
                     <Route exact path="/" element={<EmployeePage setToken={this.props.setToken}/>}></Route> 
                     <Route path="/deals" element={<DealsPage/>}></Route>       
