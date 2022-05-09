@@ -8,6 +8,7 @@ const DealsContext = React.createContext({
     defaultDeal: {},
     currentDeal: {},
     deals: {},
+    checkDeals: ()=>{},
     getCurrentDeal: ()=>{},
     setCurrentDeal: ()=>{},
     updateCurrentDeal: ()=>{},
@@ -70,13 +71,15 @@ export class DealsProvider extends React.Component{
         const token = TokenService.getToken();
         const deals = DealsStorage.getDeals();
         
-        if(!token){
-            DealsService.getAllDeals()
+        if(token){
+            return DealsService.getEmployeeDeals(token)
                 .then(resData => {
+                    const deals = resData.dbDeals;
 
+                    this.setDeals(deals);
                 })
                 .catch(err=>{
-
+                    console.log(err)
                 });
         } else{
             this.setDeals(deals);
@@ -185,6 +188,7 @@ export class DealsProvider extends React.Component{
             currentDeal: this.state.currentDeal,
             deals: this.state.deals,
             error: this.state.error,
+            checkDeals: this.checkDeals,
             getCurrentDeal: this.getCurrentDeal,
             setCurrentDeal: this.setCurrentDeal,
             updateCurrentDeal: this.updateCurrentDeal,

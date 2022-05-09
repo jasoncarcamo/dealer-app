@@ -44,6 +44,10 @@ export default class LandingPage extends React.Component{
         this.props.setToken(token);
     }
 
+    loadDeals = ()=>{
+        this.context.dealsContext.checkDeals();
+    }
+
     handleLogIn = (e)=>{
         const employee = {
             work_email: this.state.email,
@@ -63,6 +67,7 @@ export default class LandingPage extends React.Component{
                 TokenService.setToken(token);
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
+                this.loadDeals();
                 this.rerouteApp(token);
             })
             .catch(err => {

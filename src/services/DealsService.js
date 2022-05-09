@@ -7,8 +7,7 @@ const DealsService = {
             headers: {
                 "content-type": "application/json",
                 "authorization": `bearer ${TokenService.getToken()}`
-            },
-            body: JSON.stringify()
+            }
         })
             .then( res => {
                 if(!res.ok){
@@ -16,7 +15,23 @@ const DealsService = {
                 };
 
                 return res.json();
-            })
+            });
+    },
+    async getEmployeeDeals(token){
+        return await fetch("http://localhost:8000/api/deals", {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "authorization": `bearer ${token}`
+            }
+        })
+            .then( res => {
+                if(!res.ok){
+                    return res.json().then( e => Promise.reject(e));
+                };
+
+                return res.json();
+            });
     },
     async getDealById(id){
         return await fetch(`http://localhost:8000/api/deals/${id}`, {
