@@ -28,11 +28,8 @@ export default class Header extends React.Component{
     handleLogout = ()=>{
         this.removeDeals();
         this.removeEmployee();
-
         TokenService.deleteToken();
         this.props.removeToken();
-
-
     }
 
     render(){

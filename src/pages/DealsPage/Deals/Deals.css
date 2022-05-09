@@ -1,0 +1,15 @@
+#deals-table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+#deals-table-header{
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#deals-table-data{
+    width: 100%;
+    border: 1px solid black;
+}
