@@ -22,9 +22,8 @@ export default class DealRow extends React.Component{
         return tableData;
     }
     render(){
-        console.log(this.props.data)
         return (
-            <tr className="deals-table-data">
+            <tr className="deals-table-data-row">
                 {this.renderData()}
             </tr>
         )

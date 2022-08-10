@@ -1,6 +1,8 @@
 import React from "react";
 import AppContext from "../../../contexts/AppContext";
 import DealsService from "../../../services/DealsService";
+import "./DealForm.css";
+import DealsLabelService from "../../../services/DealsLabelService";
 
 export default class DealForm extends React.Component{
     constructor(props){
@@ -22,7 +24,7 @@ export default class DealForm extends React.Component{
 
         this.setState({
             defaultDeal
-        })
+        });
     }
 
     updateContextDealById = (deal)=>{
@@ -92,28 +94,29 @@ export default class DealForm extends React.Component{
 
         for(const key of Object.keys(defaultDeal)){
             let name = key;
+            let label = DealsLabelService.turnToLabel(name);
             let nameSplit = key.split("_");
             let type = key.includes("year") || key.includes("deposit") ? "number" : "text";
             let classNameFiller = nameSplit.join("-");
             let inputContainer;
             let input = <input id={`deal-input-${classNameFiller}`} className="deal-input" type={type} name={name} value={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name} defaultValue={this.state.defaultDeal[name]}/>;
-
+            console.log(label)
             if(name === "id" || name === "employee_id"){
                 continue;
             };
 
             if(defaultDeal[name] === false || defaultDeal[name] === true){
 
-                input =  <input id={`deal-input-${classNameFiller}`} className="deal-input" type="checkbox" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name}/>;
+                input =  <input id={`deal-input-${classNameFiller}`} className="deal-input" type="checkbox" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>;
             };
 
             if(name.includes("arrival") || name.includes("date")){
-                input = <input id={`deal-input-${classNameFiller}`} className="deal-input" type="datetime-local" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name}/>;
+                input = <input id={`deal-input-${classNameFiller}`} className="deal-input" type="datetime-local" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>;
             }
 
             inputContainer = (
                 <div className="deal-input-container" key={index}>
-                    <label className={`deal-label-${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{name}</label>
+                    <label className={`deal-label-${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{label}:</label>
 
                     {input}
                 </div>

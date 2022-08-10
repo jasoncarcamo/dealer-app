@@ -27,7 +27,7 @@ export default class DealsPage extends React.Component{
 
                 <Deals/>
 
-                {this.state.createDeal ? <DealForm method="POST"/> : ""}
+                {this.state.createDeal ? <DealForm method="POST" toggleDealBtn={this.toggleDealBtn}/> : ""}
 
                 <NewDealBtn toggleDealBtn={this.toggleDealBtn}/>
             </section>

@@ -1,0 +1,20 @@
+#deal-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 0;
+    background-color: white;
+    max-height: 90vh;
+}
+
+#deal-fieldset{
+    margin: 0;
+    padding: 0;
+}
+
+#deal-legend{
+    margin: 0;
+    padding: 0;
+}

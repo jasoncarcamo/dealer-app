@@ -14,7 +14,6 @@ export default class Deals extends React.Component{
     static contextType = AppContext;
 
     componentDidMount(){
-        console.log(this.context);
         this.setState({
             deals: this.context.dealsContext.deals
         })
@@ -68,7 +67,7 @@ export default class Deals extends React.Component{
     }
 
     renderDealRows = ()=>{
-        const deals = this.state.deals;
+        const deals = this.context.dealsContext.deals;
         const dataRows = [];
         let index = 0;
 
