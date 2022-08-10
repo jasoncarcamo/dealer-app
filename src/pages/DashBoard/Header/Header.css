@@ -1,0 +1,42 @@
+#header-section{
+    width: 16rem;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(89, 87, 87);
+}
+
+#header-list-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.header-list{
+    padding: 1.25rem 0;
+    margin: .25rem 0;
+    text-align: center;
+    list-style: none;
+    color: white;
+    border: 1px solid transparent;
+}
+
+.header-list:hover{
+    background-color: rgb(255, 163, 255);
+}
+
+#sign-out-button{
+    width: 90%;
+    position: relative;
+    bottom: 4rem;
+    left: 50%;
+    padding: 1.25rem 0;
+    transform: translate(-50%, 0);
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(255, 163, 255);
+    border: none;
+}

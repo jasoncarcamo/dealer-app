@@ -1,5 +1,3 @@
-
-
 const AuthService = {
     async logIn(employee){
         return await fetch("http://localhost:8000/api/login", {
@@ -15,7 +13,7 @@ const AuthService = {
                 };
 
                 return res.json();
-            })
+            });
     },
     async register(newEmployee){
         return await fetch("http://localhost:8000/api/register", {
@@ -31,7 +29,7 @@ const AuthService = {
                 };
 
                 return res.json();
-            })
+            });
     }
 };
 
