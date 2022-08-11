@@ -4,6 +4,7 @@ import {Link, Navigate} from "react-router-dom";
 import TokenService from "../../services/TokenService";
 import EmployeeStorage from "../../services/EmployeeStorage";
 import AppContext from "../../contexts/AppContext";
+import "./LandingPage.css";
 
 export default class LandingPage extends React.Component{
     constructor(props){
@@ -61,6 +62,8 @@ export default class LandingPage extends React.Component{
                 const employee = resData.employee;
                 const token = resData.token;
 
+                console.log(resData)
+
                 if(resData.hasOwnProperty("error")){
                     return;
                 };
@@ -78,12 +81,12 @@ export default class LandingPage extends React.Component{
     render(){
         return (
             <section id="landing-page">
-                <section>
+                <section id="login-section">
                     <form id="login-form" onSubmit={this.handleLogIn}>
-                        <fieldset id="login-fielset">
+                        <fieldset id="login-fieldset">
                             <legend></legend>
 
-                            <label id="" htmlFor="login-email"></label>
+                            <label id="" className="login-label" htmlFor="login-email">Email:</label>
                             <input 
                             id="login-email" 
                             type="email" 
@@ -91,7 +94,7 @@ export default class LandingPage extends React.Component{
                             value={this.state.email}
                             onChange={this.handleEmail}/>
 
-                            <label id="" htmlFor="login-password"></label>
+                            <label id="" className="login-label" htmlFor="login-password">Password:</label>
                             <input 
                             id="login-password" 
                             type="password" 
@@ -105,7 +108,7 @@ export default class LandingPage extends React.Component{
                         <p>{this.state.error ? this.state.error: ""}</p>
                     </form>
 
-                    <p>Need an account? Register <Link to="/register">here</Link></p>
+                    <p className="no-account-message">Need an account? Register <Link to="/register">here</Link></p>
                     {this.state.success ? <Navigate to="/employee" replace={true}></Navigate> : ""}
                 </section>
             </section>

@@ -1,45 +1,58 @@
-#landing-page{
+html{
+    overflow: auto;
+}
+
+#register-section{
     width: 100%;
     height: 100vh;
     margin: 0;
+    padding: 0 0 7rem 0;
+}
+
+#register-section-container{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto 7rem auto;
     padding: 0;
 }
 
-#login-section{
+#register-form{
+    width: 40em;
+    padding: 0;
     margin: 0 auto;
-    padding: 0;
-}
-
-#login-form{
-    width: 26em;
-    padding: 0;
-    margin: 15em auto 0 auto;
     background-color: white;
     border-radius: .4em;
     border: .15rem solid black;
 }
 
-#login-fieldset{
+#register-fieldset{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     border: none;
 }
 
-#login-label{
+.register-input-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#register-label{
     text-align: center;
     margin-top: 2.1em;
     color: #79589f;
 }
 
-#login-form label{
+#register-form label{
     width: 80%;
     margin: 1.4em auto 0 auto;
     font-size: 1em;
 }
 
 
-#login-form input{
+#register-form input{
     width: 80%;
     height: 3.1em;
     margin: 0 auto;
@@ -48,11 +61,11 @@
     border: .1em solid lightgray;
 }
 
-#login-form input:hover{
+#register-form input:hover{
     border: .1em solid #92aeff;
 }
 
-#login-submit{
+#register-submit{
     display: block;
     font-size: 1em;
     width: 7.1em;
@@ -64,6 +77,6 @@
     background: linear-gradient(135deg,#79589f, #ac8ece);
 }
 
-.no-account-message{
+.has-account-message{
     text-align: center;
 }
