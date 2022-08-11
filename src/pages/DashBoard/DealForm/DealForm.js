@@ -99,25 +99,40 @@ export default class DealForm extends React.Component{
             let type = key.includes("year") || key.includes("deposit") ? "number" : "text";
             let classNameFiller = nameSplit.join("-");
             let inputContainer;
-            let input = <input id={`deal-input-${classNameFiller}`} className="deal-input" type={type} name={name} value={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name} defaultValue={this.state.defaultDeal[name]}/>;
-            console.log(label)
+            let input = (
+                <>
+                    <label className={`deal-label ${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{label}:</label>
+                    <input id={`deal-input ${classNameFiller}`} className="deal-input" type={type} name={name} value={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name} defaultValue={this.state.defaultDeal[name]}/>
+                </>
+            );
+            
             if(name === "id" || name === "employee_id"){
                 continue;
             };
 
             if(defaultDeal[name] === false || defaultDeal[name] === true){
 
-                input =  <input id={`deal-input-${classNameFiller}`} className="deal-input" type="checkbox" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>;
+                input =  (
+                    <>
+                        <label className={`deal-label ${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>
+                            <input id={`deal-input ${classNameFiller}`} className="deal-input-check" type="checkbox" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>
+                            {label}:
+                        </label>
+                    </>
+                );
             };
 
             if(name.includes("arrival") || name.includes("date")){
-                input = <input id={`deal-input-${classNameFiller}`} className="deal-input" type="datetime-local" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>;
+                input = (
+                    <>
+                        <label className={`deal-label ${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{label}:</label>
+                        <input id={`deal-input ${classNameFiller}`} className="deal-input-time" type="datetime-local" name={name} checked={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={label}/>
+                    </>
+                );
             }
 
             inputContainer = (
                 <div className="deal-input-container" key={index}>
-                    <label className={`deal-label-${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{label}:</label>
-
                     {input}
                 </div>
             );
@@ -136,9 +151,11 @@ export default class DealForm extends React.Component{
         return (
             <form id="deal-form" onSubmit={this.handleForm}>
                 <fieldset id="deal-fieldset">
-                    <legend id="deal-legend"></legend>
+                    <legend id="deal-legend">New Customer</legend>
 
-                    {this.renderInputs()}
+                    <div className="deal-form-input-container">
+                        {this.renderInputs()}
+                    </div>
 
                     <button id="new-deal-button">Save</button>
                 </fieldset>
