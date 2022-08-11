@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
 import "./DashBoard.css";
+import AddButton from "./AddButton/AddButton";
 
 export default class DashBoard extends React.Component{
     constructor(props){
@@ -15,8 +16,8 @@ export default class DashBoard extends React.Component{
             <section id="dashboard-section">
                 <Header/>
 
-                <section>
-
+                <section id="dashboard-view-section">
+                    <AddButton/>
                 </section>
             </section>
         )

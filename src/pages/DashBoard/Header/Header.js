@@ -2,6 +2,11 @@ import React from "react";
 import "./Header.css"
 
 export default class Header extends React.Component{
+
+    click = ()=>{
+        console.log("Clicked");
+    }
+
     render(){
         return (
             <header id="header-section">
@@ -13,7 +18,7 @@ export default class Header extends React.Component{
                     <li className="header-list">Account</li>
                 </ul>
 
-                <button id="sign-out-button">Sign Out</button>
+                <button id="sign-out-button" onClick={this.click}>Sign Out</button>
             </header>
         );
     }

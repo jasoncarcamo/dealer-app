@@ -32,16 +32,16 @@ export default class App extends React.Component{
     RenderAuthethicatedRoutes = ()=>{
 
         if(!TokenService.hasToken()){
-            return <Route exact path="/employee/*" element={<Navigate to="/"/>}/>
+            return <Route exact path="/*" element={<Navigate to="/"/>}/>
         }
-        return <Route path="/employee/*" element={<EmployeeRoutes setToken={this.setToken} removeToken={this.removeToken}/>}/>;
+        return <Route path="/dashboard/*" element={<EmployeeRoutes setToken={this.setToken} removeToken={this.removeToken}/>}/>;
     }
 
     RenderUnautheticatedRoutes = ()=>{
         return (
             <>
-                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/employee"/>}/>
-                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/employee"/>}/>
+                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/dashboard"/>}/>
+                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/dashboard"/>}/>
             </>
         );
     }
