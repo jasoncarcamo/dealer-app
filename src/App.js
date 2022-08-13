@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import Register from './pages/Register/Register';
 import NotFound from './pages/NotFound/NotFound';
 import EmployeeRoutes from './EmployeeRoutes/EmployeeRoutes';
+import DashBoard from './pages/DashBoard/DashBoard';
 
 export default class App extends React.Component{
     constructor(props){
@@ -31,17 +32,19 @@ export default class App extends React.Component{
 
     RenderAuthethicatedRoutes = ()=>{
 
-        if(!TokenService.hasToken()){
-            return <Route exact path="/*" element={<Navigate to="/"/>}/>
-        }
-        return <Route path="/dashboard/*" element={<EmployeeRoutes setToken={this.setToken} removeToken={this.removeToken}/>}/>;
+        return <Route path="/*" element={<DashBoard/>}></Route>;
     }
 
     RenderUnautheticatedRoutes = ()=>{
+
+        if(TokenService.hasToken()){
+            return;
+        };
+
         return (
             <>
                 <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/dashboard"/>}/>
-                <Route exact path="/register" element={!TokenService.hasToken() ? <Register setToken={this.setToken}/> : <Navigate to="/dashboard"/>}/>
+                <Route exact path="/register" element={<Register setToken={this.setToken}/>}/>
             </>
         );
     }
@@ -50,8 +53,8 @@ export default class App extends React.Component{
         console.log(this.state)
         return (
             <Routes>
-                {this.RenderUnautheticatedRoutes()}
                 {this.RenderAuthethicatedRoutes()}
+                {this.RenderUnautheticatedRoutes()}
             </Routes>
         );
     };

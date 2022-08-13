@@ -1,4 +1,5 @@
 #header-section{
+    position: relative;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -10,33 +11,46 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 100%;
+    height: auto;
     margin: 0 auto;
     padding: 0;
 }
 
-.header-list{
-    padding: 1.25rem 0;
-    margin: .25rem 0;
+.active-link{
+    width: 100%;
+    height: 100%;
     text-align: center;
     list-style: none;
+    text-decoration: none;
     color: white;
-    border: 1px solid transparent;
+    cursor: pointer;
+    background-color: rgb(255, 163, 255) !important;
+}
+
+.header-list{
+    display: block;
+    width: 100%;
+    height: 2.75rem;
+    padding: 0;
+    margin: .25rem 0;
+    text-align: center;
+    line-height: 2.7rem;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    border: .001rem solid transparent;
+    border-radius: .25rem;
     cursor: pointer;
 }
 
-.header-list:hover{
-    background-color: rgb(255, 163, 255);
-}
-
 #sign-out-button{
+    position: absolute;
     width: 90%;
-    position: relative;
     z-index: 0;
-    bottom: 5.5rem;
+    bottom: 0rem;
     left: 50%;
     padding: 1.25rem 0;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     font-size: 1rem;
     color: white;
     background-color: rgb(255, 163, 255);

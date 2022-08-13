@@ -4,7 +4,6 @@
     left: 50%;
     width: 80%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
     padding: 0;
     background-color: white;
     max-height: 90vh;
@@ -13,9 +12,12 @@
 #deal-fieldset{
     margin: 0;
     padding: 0;
+    border: none;
 }
 
 #deal-legend{
+    font-size: 2rem;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
