@@ -1,6 +1,6 @@
 import React from "react";
 import AuthService from "../../services/AuthService";
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import TokenService from "../../services/TokenService";
 import EmployeeStorage from "../../services/EmployeeStorage";
 import AppContext from "../../contexts/AppContext";
@@ -109,7 +109,6 @@ export default class LandingPage extends React.Component{
                     </form>
 
                     <p className="no-account-message">Need an account? Register <Link to="/register">here</Link></p>
-                    {this.state.success ? <Navigate to="/employee" replace={true}></Navigate> : ""}
                 </section>
             </section>
         );

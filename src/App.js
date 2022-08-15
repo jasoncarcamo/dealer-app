@@ -2,13 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import TokenService from './services/TokenService';
-import { Route , Routes, Navigate} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Register from './pages/Register/Register';
 import NotFound from './pages/NotFound/NotFound';
 import EmployeeRoutes from './EmployeeRoutes/EmployeeRoutes';
-import DashBoard from './pages/DashBoard/DashBoard';
+import DashBoard from './DashBoard/DashBoard';
 
 export default class App extends React.Component{
     constructor(props){
@@ -32,7 +32,8 @@ export default class App extends React.Component{
 
     RenderAuthethicatedRoutes = ()=>{
 
-        return <Route path="/*" element={<DashBoard/>}></Route>;
+        return <Route path="/" render={(props)=> (<DashBoard {...props}/>)}>
+        </Route>;
     }
 
     RenderUnautheticatedRoutes = ()=>{
@@ -43,8 +44,8 @@ export default class App extends React.Component{
 
         return (
             <>
-                <Route exact path="/" element={!TokenService.hasToken() ? <LandingPage setToken={this.setToken}/> : <Navigate to="/dashboard"/>}/>
-                <Route exact path="/register" element={<Register setToken={this.setToken}/>}/>
+                <Route exact path="/" render={(props) => <LandingPage setToken={this.setToken}/>}/>
+                <Route exact path="/register" render={(props) => <Register setToken={this.setToken}/>}/>
             </>
         );
     }
@@ -52,10 +53,10 @@ export default class App extends React.Component{
     render(){
         console.log(this.state)
         return (
-            <Routes>
+            <>
                 {this.RenderAuthethicatedRoutes()}
                 {this.RenderUnautheticatedRoutes()}
-            </Routes>
+            </>
         );
     };
 }

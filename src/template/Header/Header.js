@@ -3,7 +3,6 @@ import AppContext from "../../contexts/AppContext";
 import EmployeeStorage from "../../services/EmployeeStorage";
 import DealsStorage from "../../services/DealsStorage";
 import TokenService from "../../services/TokenService";
-import {Navigate} from "react-router-dom";
 
 export default class Header extends React.Component{
     constructor(props){

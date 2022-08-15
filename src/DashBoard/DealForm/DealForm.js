@@ -1,8 +1,8 @@
 import React from "react";
-import AppContext from "../../../contexts/AppContext";
-import DealsService from "../../../services/DealsService";
+import AppContext from "../../contexts/AppContext";
+import DealsService from "../../services/DealsService";
 import "./DealForm.css";
-import DealsLabelService from "../../../services/DealsLabelService";
+import DealsLabelService from "../../services/DealsLabelService";
 
 export default class DealForm extends React.Component{
     constructor(props){

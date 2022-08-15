@@ -3,7 +3,7 @@ import AuthService from "../../services/AuthService";
 import TokenService from "../../services/TokenService";
 import EmployeeStorage from "../../services/EmployeeStorage";
 import AppContext from "../../contexts/AppContext";
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./Register.css";
 
 export default class Register extends React.Component{

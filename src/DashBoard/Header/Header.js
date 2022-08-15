@@ -34,7 +34,7 @@ export default class Header extends React.Component{
     }
 
     handleClassName = ({isActive})=>{
-        return ["header-list", isActive ? "active-link" : null].filter(Boolean).join(" ");
+        return "header-list"
     }
 
     render(){
@@ -43,19 +43,19 @@ export default class Header extends React.Component{
 
                 <ul id="header-list-container">
                     <li className="header-list">
-                        <NavLink to="/" className={this.handleClassName}>Home</NavLink>
+                        <NavLink to="/" className="header-list">Home</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/customers" className={this.handleClassName}>Customers</NavLink>
+                        <NavLink to="/customers" className="header-list">Customers</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/sold" className={this.handleClassName}>Sold</NavLink>
+                        <NavLink to="/sold" className="header-list">Sold</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/pending" className={this.handleClassName}>Pending</NavLink>
+                        <NavLink to="/pending" className="header-list">Pending</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/account" className={this.handleClassName}>Account</NavLink>
+                        <NavLink to="/account" className="header-list">Account</NavLink>
                     </li>
                 </ul>
 
