@@ -10,13 +10,11 @@ import ContextContainer from './contexts/ContextContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <ContextContainer>
-                <App/>
-            </ContextContainer>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <ContextContainer>
+            <App/>
+        </ContextContainer>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -19,6 +19,10 @@ export default class DealForm extends React.Component{
 
     static contextType = AppContext
 
+    toggleForm = ()=>{
+        this.props.toggleForm();
+    }
+
     resetDefaultDeal = ()=>{
         const defaultDeal = Object.assign({}, this.context.dealsContext.defaultDeal);
 
@@ -65,6 +69,7 @@ export default class DealForm extends React.Component{
         deal.employee_id = this.context.employeeContext.employee.id;
 
         if(method === "POST"){
+
             DealsService.createDeal(deal)
                 .then( resData => {
                     const newDeal = resData.createdDeal;
@@ -79,7 +84,9 @@ export default class DealForm extends React.Component{
         if(method === "PATCH"){
             DealsService.updateDealById(deal, deal.id)
                 .then( resData => {
-
+                    const updatedDeal = resData.createdDeal;
+                    
+                    this.updateContextDealById(updatedDeal);
                 })
                 .catch(err => {
 
@@ -102,7 +109,7 @@ export default class DealForm extends React.Component{
             let input = (
                 <>
                     <label className={`deal-label ${classNameFiller}`} htmlFor={`deal-input-${classNameFiller}`}>{label}:</label>
-                    <input id={`deal-input ${classNameFiller}`} className="deal-input" type={type} name={name} value={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name} defaultValue={this.state.defaultDeal[name]}/>
+                    <input id={`deal-input ${classNameFiller}`} className="deal-input" type={type} name={name} value={this.state.defaultDeal[name]} onChange={this.handleInput} placeholder={name}/>
                 </>
             );
             
@@ -145,21 +152,25 @@ export default class DealForm extends React.Component{
 
     };
 
-
     render(){
-        
+        console.log(this.context, this.state)
         return (
-            <form id="deal-form" onSubmit={this.handleForm}>
-                <fieldset id="deal-fieldset">
-                    <legend id="deal-legend">New Customer</legend>
+            <section id="form-section">
+                <form id="deal-form" onSubmit={this.handleForm}>
+                    <fieldset id="deal-fieldset">
+                        <legend id="deal-legend">New Customer</legend>
 
-                    <div className="deal-form-input-container">
-                        {this.renderInputs()}
-                    </div>
+                        <div className="deal-form-input-container">
+                            {this.renderInputs()}
+                        </div>
 
-                    <button id="new-deal-button">Save</button>
-                </fieldset>
-            </form>
+                        <div id="deal-form-btns-container">
+                            <button className="new-deal-button">Save</button>
+                            <button className="new-deal-button" onClick={this.toggleForm}>Cancel</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
         );
     };
 }

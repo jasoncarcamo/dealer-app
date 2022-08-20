@@ -17,20 +17,25 @@ export default class DashBoard extends React.Component{
         console.log("Mounted");
     }
 
-    handleForm = ()=>{
+    toggleForm = ()=>{
         this.setState({
             show_form: !this.state.show_form
         });
     }
 
+    componentDidUpdate(){
+        console.log("Updated")
+    }
+
     render(){
+        console.log("Loaded")
         return (
             <section id="dashboard-section">
                 <Header/>
 
                 <section id="dashboard-view-section">
 
-                    {this.state.show_form ? <DealForm/> : ""}
+                    {this.state.show_form ? <DealForm method="POST" toggleForm={this.toggleForm}/> : ""}
 
                     
                     
@@ -40,7 +45,7 @@ export default class DashBoard extends React.Component{
                         </Route>
                     </Switch>
 
-                    <AddButton handleForm={this.handleForm}/>
+                    <AddButton toggleForm={this.toggleForm}/>
                 </section>
             </section>
         )

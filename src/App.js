@@ -32,7 +32,7 @@ export default class App extends React.Component{
 
     RenderAuthethicatedRoutes = ()=>{
 
-        return <Route path="/" render={(props)=> (<DashBoard {...props}/>)}>
+        return <Route path="/" component={DashBoard}>
         </Route>;
     }
 

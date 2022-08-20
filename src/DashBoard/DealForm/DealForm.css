@@ -1,12 +1,14 @@
+#form-section{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+
 #deal-form{
-    position: relative;
-    top: 50%;
-    left: 50%;
-    width: 80%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
     padding: 0;
     background-color: white;
-    max-height: 90vh;
 }
 
 #deal-fieldset{
@@ -57,10 +59,24 @@
     margin: 0;
 }
 
-#new-deal-button{
+#deal-form-btns-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    font-size: 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.new-deal-button{
     display: block;
     font-size: 1rem;
     width: 6.5rem;
     height: 2.5rem;
-    margin: 2rem auto 1.5rem auto;
+    margin: 0 1rem;
+    padding: 0;
 }
