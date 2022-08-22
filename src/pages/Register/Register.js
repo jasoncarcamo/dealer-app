@@ -41,10 +41,6 @@ export default class Register extends React.Component{
         this.context.employeeContext.setEmployee(employee);
     }
 
-    rerouteApp = (token)=>{
-        this.props.setToken(token);
-    }
-
     handleRegister = (e)=>{
         const newEmployee = Object.assign({}, this.state);
 
@@ -61,7 +57,8 @@ export default class Register extends React.Component{
                 TokenService.setToken(token);
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
-                this.rerouteApp(token);
+                
+                this.props.history.push("/")
             })
             .catch(err => {
                 this.handleError(err.error);
@@ -69,6 +66,7 @@ export default class Register extends React.Component{
     }
 
     render(){
+        console.log(this.props)
         return (
             <section id="register-section">
                 <section id="register-section-container">

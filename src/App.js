@@ -31,6 +31,9 @@ export default class App extends React.Component{
     }
 
     RenderAuthethicatedRoutes = ()=>{
+        if(!TokenService.hasToken()){
+            return;
+        };
 
         return <Route path="/" component={DashBoard}>
         </Route>;
@@ -44,8 +47,8 @@ export default class App extends React.Component{
 
         return (
             <>
-                <Route exact path="/" render={(props) => <LandingPage setToken={this.setToken}/>}/>
-                <Route exact path="/register" render={(props) => <Register setToken={this.setToken}/>}/>
+                <Route exact path="/" component={LandingPage}/>
+                <Route exact path="/register" component={Register}/>
             </>
         );
     }

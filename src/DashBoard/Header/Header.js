@@ -1,8 +1,15 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import "./Header.css"
+import SignOutMessage from "./SignOutMessage/SignOutMessage";
 
 export default class Header extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            show_sign_off: false
+        }
+    }
 
     componentDidMount(){
         this.handleActiveLink();
@@ -23,15 +30,14 @@ export default class Header extends React.Component{
         });
     }
 
-    click = ()=>{
+    handleSignOutForm = ()=>{
+        this.setState({
+        show_sign_off: !this.state.show_sign_off
+        });
     }
 
-    activeStyle = ()=>{
-        return "active-link"
-    }
-
-    handleClassName = ({isActive})=>{
-        return "header-list"
+    toHome = ()=>{
+        this.props.history.push("/");
     }
 
     render(){
@@ -56,7 +62,9 @@ export default class Header extends React.Component{
                     </li>
                 </ul>
 
-                <button id="sign-out-button" onClick={this.click}>Sign Out</button>
+                {this.state.show_sign_off ? <SignOutMessage toHome={this.toHome} handleSignOutForm={this.handleSignOutForm}/> : ""}
+
+                <button id="sign-out-button" onClick={this.handleSignOutForm}>Sign Out</button>
             </header>
         );
     }

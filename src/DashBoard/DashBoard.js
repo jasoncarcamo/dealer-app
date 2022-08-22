@@ -26,14 +26,12 @@ export default class DashBoard extends React.Component{
         
         return (
             <section id="dashboard-section">
-                <Header/>
+                <Route path="/" component={Header}/>
 
                 <section id="dashboard-view-section">
 
                     {this.state.show_form ? <DealForm method="POST" toggleForm={this.toggleForm}/> : ""}
 
-                    
-                    
                     <Switch>
                         <Route path="/customers" component={CustomersView}>
                             

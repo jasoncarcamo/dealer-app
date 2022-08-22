@@ -69,7 +69,8 @@ export default class LandingPage extends React.Component{
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
                 this.loadDeals();
-                this.rerouteApp(token);
+                
+                this.props.history.push("/");
             })
             .catch(err => {
                 this.handleError(err.error);

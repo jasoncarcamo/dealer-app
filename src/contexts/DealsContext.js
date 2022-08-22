@@ -32,6 +32,10 @@ export class DealsProvider extends React.Component{
         this.state = {
             defaultDeal: {
                 id: "",
+                first_name: "",
+                middle_name: "",
+                last_name: "",
+                mobile_number: "",
                 type: "",
                 year: "",
                 make: "",
@@ -70,7 +74,7 @@ export class DealsProvider extends React.Component{
     checkDeals = ()=>{
         const token = TokenService.getToken();
         const deals = DealsStorage.getDeals();
-        
+
         if(token){
             return DealsService.getEmployeeDeals(token)
                 .then(resData => {
