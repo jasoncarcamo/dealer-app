@@ -90,8 +90,6 @@ export class EmployeeProvider extends React.Component{
             deleteEmployee: this.deleteEmployee
         };
 
-        console.log(value);
-
         return (
             <EmployeeContext.Provider value={value}>
                 {this.props.children}

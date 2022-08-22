@@ -14,8 +14,6 @@ export default class Header extends React.Component{
         Array.from(headerLists).forEach((element, index) => {
             element.addEventListener("click", e => {
 
-               console.log(e.target.classList.contains("header-list"));
-
                 Array.from(headerLists).forEach((ele, i)=>{
                     ele.classList.remove("active-link");
                 }); 
@@ -26,7 +24,6 @@ export default class Header extends React.Component{
     }
 
     click = ()=>{
-        console.log("Clicked");
     }
 
     activeStyle = ()=>{

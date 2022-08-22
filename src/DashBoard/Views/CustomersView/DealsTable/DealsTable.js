@@ -16,7 +16,7 @@ export default class DealsTable extends React.Component{
             let label = DealsLabelService.turnToLabel(key);
             let tableLabel;
 
-            if(key === "employee_id"){
+            if(key === "employee_id" || key === "id"){
                 continue;
             };
 
@@ -30,6 +30,45 @@ export default class DealsTable extends React.Component{
         return tableLabels;
     }
 
+    renderAllDeals = ()=>{
+        const deals = this.context.dealsContext.deals;
+        const defaultDeal = this.context.dealsContext.defaultDeal;
+        let firstIndex = 0;
+        let tableData = [];
+
+        for(const dealsKey of Object.keys(deals)){
+            let dataRows = [];
+            let dataRow;
+            let secondIndex = 0;
+
+            for(const key of Object.keys(defaultDeal)){
+                let data;
+                let innerIndex = 0;
+
+                if(key === "employee_id" || key === "id"){
+                    continue;
+                };
+
+                data = <td className="deals-table-data-row" key={`${firstIndex + innerIndex + secondIndex}`}>{deals[dealsKey][key]}</td>;
+
+                if(key.includes("arrival") || key.includes("date")){
+                    data = <td className="deals-table-data-row" key={`${firstIndex + innerIndex + secondIndex}`}>{new Date(deals[dealsKey][key]).toDateString()}</td>;
+                };
+
+                dataRows.push(data);
+                innerIndex++;
+                secondIndex++;
+            };
+
+            dataRow = <tr className="deals-table-data-row" key={firstIndex}>{dataRows}</tr>
+
+            tableData.push(dataRow)
+            firstIndex++;
+        };
+
+        return tableData;
+    }
+
     render(){
         return (
             <table id="deals-table">
@@ -40,7 +79,7 @@ export default class DealsTable extends React.Component{
                 </thead>
 
                 <tbody id="deals-table-body">
-                    {/*this.renderDealRows()*/}
+                    {this.renderAllDeals()}
                 </tbody>
             </table>
         );

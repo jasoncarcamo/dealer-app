@@ -70,7 +70,7 @@ export class DealsProvider extends React.Component{
     checkDeals = ()=>{
         const token = TokenService.getToken();
         const deals = DealsStorage.getDeals();
-        console.log(token, deals)
+        
         if(token){
             return DealsService.getEmployeeDeals(token)
                 .then(resData => {

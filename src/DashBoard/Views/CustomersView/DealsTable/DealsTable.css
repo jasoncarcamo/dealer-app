@@ -12,7 +12,7 @@
 
 .deals-table-header-row{
     display: grid;
-    grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -30,5 +30,14 @@
 
 #deals-table-data{
     width: 100%;
+    border: 1px solid black;
+}
+
+.deals-table-data-row{
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     border: 1px solid black;
 }

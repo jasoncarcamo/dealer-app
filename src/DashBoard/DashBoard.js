@@ -14,7 +14,6 @@ export default class DashBoard extends React.Component{
         }
     }
     componentDidMount(){
-        console.log("Mounted");
     }
 
     toggleForm = ()=>{
@@ -23,12 +22,8 @@ export default class DashBoard extends React.Component{
         });
     }
 
-    componentDidUpdate(){
-        console.log("Updated")
-    }
-
     render(){
-        console.log("Loaded")
+        
         return (
             <section id="dashboard-section">
                 <Header/>

@@ -153,7 +153,6 @@ export default class DealForm extends React.Component{
     };
 
     render(){
-        console.log(this.context, this.state)
         return (
             <section id="form-section">
                 <form id="deal-form" onSubmit={this.handleForm}>

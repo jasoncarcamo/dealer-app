@@ -1,5 +1,5 @@
 #add-button-section{
-    position: absolute;
+    position: fixed;
     bottom: 4rem;
     right: 4rem;
     width: 4rem;

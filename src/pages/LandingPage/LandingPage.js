@@ -62,8 +62,6 @@ export default class LandingPage extends React.Component{
                 const employee = resData.employee;
                 const token = resData.token;
 
-                console.log(resData)
-
                 if(resData.hasOwnProperty("error")){
                     return;
                 };
