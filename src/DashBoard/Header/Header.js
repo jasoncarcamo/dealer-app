@@ -46,7 +46,7 @@ export default class Header extends React.Component{
 
                 <ul id="header-list-container">
                     <li className="header-list">
-                        <NavLink exact to="/" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Home</NavLink>
+                        <NavLink exact to="/dashboard" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Home</NavLink>
                     </li>
                     <li className="header-list">
                         <NavLink to="/customers" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Customers</NavLink>

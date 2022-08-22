@@ -19,6 +19,12 @@ export default class LandingPage extends React.Component{
 
     static contextType = AppContext;
 
+    componentDidMount(){
+        if(TokenService.hasToken()){
+            this.props.history.push("/dashboard");
+        };
+    }
+
     handleEmail = (e)=>{
         this.setState({
             email: e.target.value
@@ -69,8 +75,8 @@ export default class LandingPage extends React.Component{
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
                 this.loadDeals();
-                
-                this.props.history.push("/");
+
+                this.props.history.push("/dashboard");
             })
             .catch(err => {
                 this.handleError(err.error);

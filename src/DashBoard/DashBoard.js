@@ -5,6 +5,7 @@ import "./DashBoard.css";
 import AddButton from "./AddButton/AddButton";
 import DealForm from "./DealForm/DealForm";
 import CustomersView from "./Views/CustomersView/CustomersView";
+import TokenService from "../services/TokenService";
 
 export default class DashBoard extends React.Component{
     constructor(props){
@@ -14,6 +15,9 @@ export default class DashBoard extends React.Component{
         }
     }
     componentDidMount(){
+        if(!TokenService.hasToken()){
+            this.props.history.push("/");
+        };
     }
 
     toggleForm = ()=>{

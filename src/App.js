@@ -35,7 +35,7 @@ export default class App extends React.Component{
             return;
         };
 
-        return <Route path="/" component={DashBoard}>
+        return <Route path="/dashboard" component={DashBoard}>
         </Route>;
     }
 
@@ -56,8 +56,9 @@ export default class App extends React.Component{
     render(){
         return (
             <>
-                {this.RenderAuthethicatedRoutes()}
-                {this.RenderUnautheticatedRoutes()}
+                <Route exact path="/" component={LandingPage}/>
+                <Route exact path="/register" component={Register}/>
+                <Route path="/dashboard" component={DashBoard}/>
             </>
         );
     };

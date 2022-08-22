@@ -25,6 +25,12 @@ export default class Register extends React.Component{
 
     static contextType = AppContext;
 
+    componentDidMount(){
+        if(TokenService.hasToken()){
+            this.props.history.push("/dashboard");
+        };
+    }
+
     handleInput = (e)=>{
         this.setState({
             [e.target.name]: e.target.value
@@ -57,8 +63,8 @@ export default class Register extends React.Component{
                 TokenService.setToken(token);
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);
-                
-                this.props.history.push("/")
+
+                this.props.history.push("/dashboard")
             })
             .catch(err => {
                 this.handleError(err.error);
