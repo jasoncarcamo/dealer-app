@@ -3,12 +3,14 @@ import AppContext from "../../contexts/AppContext";
 import DealsService from "../../services/DealsService";
 import "./DealForm.css";
 import DealsLabelService from "../../services/DealsLabelService";
+import DealMessage from "./DealMessage/DealMessage";
 
 export default class DealForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             defaultDeal: {},
+            show_confirm: false,
             error: ""
         }
     }
@@ -21,6 +23,12 @@ export default class DealForm extends React.Component{
 
     toggleForm = ()=>{
         this.props.toggleForm();
+    }
+
+    toggleConfirm = ()=>{
+        this.setState({
+            show_confirm: !this.state.show_confirm
+        });
     }
 
     resetDefaultDeal = ()=>{
@@ -75,6 +83,8 @@ export default class DealForm extends React.Component{
                     const newDeal = resData.createdDeal;
                     
                     this.updateContextDealById(newDeal);
+
+                    this.toggleConfirm();
                 })
                 .catch(err => {
 
@@ -155,6 +165,7 @@ export default class DealForm extends React.Component{
     render(){
         return (
             <section id="form-section">
+                {this.state.show_confirm ? <DealMessage toggleForm={this.toggleForm}/> : ""}
                 <form id="deal-form" onSubmit={this.handleForm}>
                     <fieldset id="deal-fieldset">
                         <legend id="deal-legend">New Customer</legend>

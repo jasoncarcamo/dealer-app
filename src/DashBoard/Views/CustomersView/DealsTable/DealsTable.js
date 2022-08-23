@@ -60,7 +60,7 @@ export default class DealsTable extends React.Component{
                 secondIndex++;
             };
 
-            dataRow = <tr className="deals-table-data-row" key={firstIndex}>{dataRows}</tr>
+            dataRow = <tr className="deals-table-data-rows" key={firstIndex}>{dataRows}</tr>
 
             tableData.push(dataRow)
             firstIndex++;

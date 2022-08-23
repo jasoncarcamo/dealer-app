@@ -37,7 +37,7 @@ export default class DashBoard extends React.Component{
                     {this.state.show_form ? <DealForm method="POST" toggleForm={this.toggleForm}/> : ""}
 
                     <Switch>
-                        <Route path="/customers" component={CustomersView}>
+                        <Route path="/dashboard/customers" component={CustomersView}>
                             
                         </Route>
                     </Switch>

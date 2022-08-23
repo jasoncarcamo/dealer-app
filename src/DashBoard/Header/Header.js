@@ -49,16 +49,16 @@ export default class Header extends React.Component{
                         <NavLink exact to="/dashboard" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Home</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/customers" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Customers</NavLink>
+                        <NavLink to="/dashboard/customers" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Customers</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/sold" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Sold</NavLink>
+                        <NavLink to="/dashboard/sold" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Sold</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/pending" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Pending</NavLink>
+                        <NavLink to="/dashboard/pending" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Pending</NavLink>
                     </li>
                     <li className="header-list">
-                        <NavLink to="/account" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Account</NavLink>
+                        <NavLink to="/dashboard/account" className="header-list" activeStyle={{backgroundColor: "rgb(255, 163, 255)"}}>Account</NavLink>
                     </li>
                 </ul>
 
