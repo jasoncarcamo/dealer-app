@@ -4,7 +4,7 @@ import EmployeeStorage from "../services/EmployeeStorage";
 import EmployeeService from "../services/EmployeeService";
 
 const EmployeeContext = React.createContext({
-    employee: {},
+    employee: null,
     error: "",
     getEmployee: ()=>{},
     setEmployee: ()=>{},
@@ -39,7 +39,6 @@ export class EmployeeProvider extends React.Component{
                     employee = dbEmployee;
 
                     EmployeeStorage.setEmployee(employee);
-
                     this.setEmployee(employee);
                 })
                 .catch( err => {
@@ -69,7 +68,7 @@ export class EmployeeProvider extends React.Component{
 
     deleteEmployee = ()=>{
         this.setState({
-            employee: {},
+            employee: null,
             error: ""
         });
     }

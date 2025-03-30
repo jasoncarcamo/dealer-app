@@ -208,8 +208,6 @@ export class DealsProvider extends React.Component{
             handleError: this.handleError
         };
 
-        console.log(value);
-
         return (
             <DealsContext.Provider value={value}>
                 {this.props.children}

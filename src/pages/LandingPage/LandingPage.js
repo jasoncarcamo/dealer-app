@@ -71,6 +71,7 @@ export default class LandingPage extends React.Component{
                 if(resData.hasOwnProperty("error")){
                     return;
                 };
+                
                 TokenService.setToken(token);
                 EmployeeStorage.setEmployee(employee);
                 this.setEmployeeContext(employee);

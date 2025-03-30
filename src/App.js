@@ -3,7 +3,9 @@ import './App.css';
 import React from 'react';
 import TokenService from './services/TokenService';
 import { Route, Switch } from "react-router-dom";
+import AppContext from './contexts/AppContext';
 
+import Header from './DashBoard/Header/Header';
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Register from './pages/Register/Register';
 import NotFound from './pages/NotFound/NotFound';
@@ -18,6 +20,8 @@ export default class App extends React.Component{
         }
     }
 
+    static contextType = AppContext;
+
     setToken = (token) => {
         this.setState({
             token
@@ -30,7 +34,7 @@ export default class App extends React.Component{
         });
     }
 
-    RenderAuthethicatedRoutes = ()=>{
+    renderAuthethicatedRoutes = ()=>{
         if(!TokenService.hasToken()){
             return;
         };
@@ -39,11 +43,7 @@ export default class App extends React.Component{
         </Route>;
     }
 
-    RenderUnautheticatedRoutes = ()=>{
-
-        if(TokenService.hasToken()){
-            return;
-        };
+    renderUnautheticatedRoutes = ()=>{
 
         return (
             <>
@@ -51,15 +51,23 @@ export default class App extends React.Component{
                 <Route exact path="/register" component={Register}/>
             </>
         );
-    }
+    };
+
+    renderLoggedInRoutes = ()=>{
+        return (
+            <>
+                <Route path="/"  component={Header}/>
+                <Route path="/dashboard" component={DashBoard}/>
+            </>
+        );
+    };
 
     render(){
         return (
-            <>
-                <Route exact path="/" component={LandingPage}/>
-                <Route exact path="/register" component={Register}/>
-                <Route path="/dashboard" component={DashBoard}/>
-            </>
+            <main>
+                {!this.context.employeeContext.employee ? this.renderUnautheticatedRoutes() : ""}
+                {this.context.employeeContext.employee ? this.renderLoggedInRoutes() : ""}
+            </main>
         );
     };
 }

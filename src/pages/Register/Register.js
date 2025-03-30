@@ -13,7 +13,7 @@ export default class Register extends React.Component{
             first_name: "",
             middle_name: "",
             last_name: "",
-            commission_number: "",
+            commission_num: "",
             work_email: "",
             mobile_number: "",
             password: "",
@@ -72,7 +72,6 @@ export default class Register extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         return (
             <section id="register-section">
                 <section id="register-section-container">
@@ -97,7 +96,7 @@ export default class Register extends React.Component{
 
                             <div className="register-input-container">
                                 <label id="register-commission" className="register-label">Commission number:</label>
-                                <input id="register-commission" type="text" name="commission_number" value={this.state.commission_num} onChange={this.handleInput}/>
+                                <input id="register-commission" type="text" name="commission_num" value={this.state.commission_num} onChange={this.handleInput}/>
                             </div>
 
                             <div className="register-input-container">

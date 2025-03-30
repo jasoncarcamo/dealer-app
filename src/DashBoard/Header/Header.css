@@ -1,7 +1,8 @@
 #header-section{
-    position: relative;
-    width: 100%;
+    position: fixed;
+    width: 15em;
     height: 100%;
+    z-index: 1;
     margin: 0;
     padding: 0;
     background-color: rgb(89, 87, 87);
