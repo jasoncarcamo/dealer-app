@@ -1,15 +1,9 @@
 #dashboard-section{
     display: grid;
-    grid-template: 100% / 14rem auto;
+    grid-template: auto / auto auto;
     width: 100%;
     height: 100%;
-    max-width: 100vw;
-}
-
-#dashboard-view-section{
-    position: relative;
-    width: 100%;
-    height: 100%;
+    border: 20px solid black;
     margin: 0;
     padding: 0;
     overflow: auto;
